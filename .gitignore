@@ -5,3 +5,5 @@ component-files-yaml/*
 
 !pipeline-files-yaml/.gitkeep
 !component-files-yaml/.gitkeep
+
+.DS_Store
