@@ -1,7 +1,6 @@
 # Kubeflow Pipeline Using YoloV3 TF2 Model
 
 This repository contains python scripts for creating Kubeflow pipeline configuration file using YoloV3 TF2 model. 
-Example pipeline files are inside `pipeline-files-yaml` directory for [brain tumor object detection task](https://www.kaggle.com/datasets/davidbroberts/brain-tumor-object-detection-datasets).
 
 ## Usage
 ### Install `kfp`
