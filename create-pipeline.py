@@ -13,6 +13,8 @@ load_test_img_op = components.load_component_from_file('./component-files-yaml/l
 
 test_op = components.load_component_from_file('./component-files-yaml/test_component.yaml')
 
+serve_op = components.load_component_from_file('./component-files-yaml/serve_component.yaml')
+
 @dsl.pipeline(name='YOLOv3 pipeline')
 def yolov3_pipeline(
     train_dataset_url="https://drive.google.com/file/d/1Sq0bph5QJE5U_x-qu8hUcjgiTONeBDy1/view?usp=sharing",
@@ -49,5 +51,7 @@ def yolov3_pipeline(
         train_model_task.outputs['trained_weights'],
         load_test_img_task.outputs['input_img']
     )
+
+    serve_op(test_task.output)
 
 kfp.compiler.Compiler().compile(yolov3_pipeline, './pipeline-files-yaml/pipeline.yaml')
