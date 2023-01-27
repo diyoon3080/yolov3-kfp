@@ -14,20 +14,17 @@ load_test_img_op = components.load_component_from_file('./component-files-yaml/l
 test_op = components.load_component_from_file('./component-files-yaml/test_component.yaml')
 
 @dsl.pipeline(name='YOLOv3 pipeline')
-def yolov3_pipeline():
-
-    with open("config.json") as f:
-        config_object = json.load(f)
-
-    train_dataset_url = config_object['train_dataset_url']
-    val_dataset_url = config_object['val_dataset_url']
-    checkpoint_url = config_object['checkpoint_url']
-    checkpoint_name = config_object['checkpoint_name']
-    test_img_url = config_object['test_img_url']
-    model_size = config_object['model_size']
-    num_classes = config_object['num_classes']
-    num_epochs = config_object['num_epohcs']
-    class_names = config_object['class_names']
+def yolov3_pipeline(
+    train_dataset_url="https://drive.google.com/file/d/1Sq0bph5QJE5U_x-qu8hUcjgiTONeBDy1/view?usp=sharing",
+    val_dataset_url="https://drive.google.com/file/d/172vMkaGKkol2x1juNzjWdEwNZrTyZnvz/view?usp=share_link",
+    checkpoint_url="https://drive.google.com/drive/folders/1-C3N6h-CtdojHjEyFvXGXBorDFBo_k4z?usp=share_link",
+    checkpoint_name="axial_ckpt.tf",
+    test_img_url="https://drive.google.com/file/d/13PzBr8jBjHdt4VMaEcEOkMoCF6VKpmx1/view?usp=share_link",
+    model_size='256',
+    num_classes='2',
+    num_epochs='1',
+    class_names='["negative", "positive"]'
+):
 
     load_data_task = load_train_data_op(train_dataset_url, val_dataset_url)
     load_weights_task = load_weights_op(checkpoint_url)
